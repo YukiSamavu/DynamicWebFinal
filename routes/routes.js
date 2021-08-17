@@ -41,17 +41,17 @@ exports.create = (req, res) => {
 
 exports.createAccount = (req, res) => {
     if(err) return console.error(err);
-   let profiles = new Account({
+    let profiles = new Account({
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
         age: req.body.age
-   });
-   profiles.save((err, profiles) => {
-       if(err) return console.error(err);
-       console.log(req.body.username);
-   });
-   res.redirect('/');
+    });
+    profiles.save((err, profiles) => {
+        if(err) return console.error(err);
+        console.log(req.body.username);
+    });
+    res.redirect('/');
 }
 
 exports.edit = (req, res) => {
