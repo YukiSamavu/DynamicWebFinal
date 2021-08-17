@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+    form(id = 'form' method = 'post' action = '/edit/' + account.email)
+        p Username 
+            input(type = 'text' name = 'username' value = account.username)
+        p Password 
+            input(type = 'text' name = 'password'  value = account.password)
+        p Email 
+            input(type = 'text' name = 'email'  value = account.email)
+        p Age 
+            input(type = 'text' name = 'age'  value = account.age)
+
+        p 
+            input(type = 'submit' value = 'Update profile')

@@ -1,0 +1,24 @@
+extends layout 
+
+block content 
+    form(id = 'form' method = 'post' action = '/create')
+        p Type in your Username 
+            input(type = 'text' name = 'username')
+        p Type in your Password 
+            input(type = 'text' name = 'password')
+        p Type in your Email 
+            input(type = 'text' name = 'email')
+        p Type in your Age 
+            input(type = 'text' name = 'age')
+        p Question #1:
+        p What state do you live in currently?   
+            input(type = 'text' name = 'state')
+        p Question #2: 
+        p What is your favorite color? 
+            input(type = 'text' name = 'color')
+        p Question #3:
+        p What is your middle name? 
+            input(type = 'text' name = 'middle')
+
+        p 
+            input(type = 'submit' value = 'add profile')
