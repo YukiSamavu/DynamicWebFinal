@@ -22,7 +22,10 @@ app.get('/home', (req,res) => {
     let today = new Date();
     let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
     res.cookie('time', theTime, {maxAge:9999999999999999});
-});
+    res.render('Home', {
+        title: 'Welcome'
+        });
+    });
 app.get('/create', routes.create);
 app.post('/create', urlendcodedParser, routes.createAccount);
 app.get('/edit', routes.edit)
