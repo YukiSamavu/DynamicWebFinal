@@ -17,11 +17,13 @@ let urlendcodedParser  = express.urlencoded({
     extended: false
 });
 
+let today = new Date();
+let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+
 app.get('/', routes.index);
 app.get('/home', (req,res) => {
-    let today = new Date();
-    let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
     res.cookie('time', theTime, {maxAge:9999999999999999});
+    res.send(`You logged in at ${theTime}`);
     res.render('Home', {
         title: 'Welcome'
         });
