@@ -40,7 +40,7 @@ exports.create = (req, res) => {
 };
 
 exports.createAccount = (req, res) => {
-    if(err) return console.error(err);
+    //if(err) return console.error(err);
     let profiles = new Account({
         username: req.body.username,
         password: req.body.password,
