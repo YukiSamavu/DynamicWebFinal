@@ -12,6 +12,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', routes.index);
-
+app.get('/create', routes.createAccount);
+app.post('/create', urlendcodedParser, routes.createAccount);
+app.get('/edit', routes.editAccount)
+app.get('/edit', urlendcodedParser, routes.editAccount)
 app.listen(3000);
 
