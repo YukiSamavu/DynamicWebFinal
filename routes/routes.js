@@ -19,7 +19,10 @@ let accountSchema = mongoose.Schema({
     username: String,
     password: String, 
     email: String, 
-    age: Number
+    age: Number,
+    state: String,
+    color: String, 
+    middle: String
 }); 
 
 let Account = mongoose.model('Account_Connection', accountSchema);
@@ -40,12 +43,15 @@ exports.create = (req, res) => {
 };
 
 exports.createAccount = (req, res) => {
-    if(err) return console.error(err);
+    //if(err) return console.error(err);
     let profiles = new Account({
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
-        age: req.body.age
+        age: req.body.age,
+        state: req.body.state,
+        color: req.body.color,
+        middle: req.body.middle
     });
     profiles.save((err, profiles) => {
         if(err) return console.error(err);
@@ -65,7 +71,10 @@ exports.editAccount = (req, res) => {
         account.username = req.body.username,
         account.password = req.body.password,
         account.email = req.body.email,
-        account.age = req.body.age;
+        account.age = req.body.age,
+        account.state = req.body.state,
+        account.color = req.body.color,
+        account.middle = req.body.middle;
         account.save((err, account) => {
             if(err) return console.error(err);
             console.log(req.body.email);
