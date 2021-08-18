@@ -17,12 +17,11 @@ let urlendcodedParser  = express.urlencoded({
     extended: false
 });
 
-let time;
-
 app.get('/', routes.index);
 app.get('/home', (req,res) => {
     let today = new Date();
-    res.cookie('time', time, {maxAge:9999999999999999});
+    let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+    res.cookie('time', theTime, {maxAge:9999999999999999});
 });
 app.get('/create', routes.create);
 app.post('/create', urlendcodedParser, routes.createAccount);
