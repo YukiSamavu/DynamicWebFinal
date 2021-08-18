@@ -11,6 +11,10 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+let urlendcodedParser  = express.urlencoded({
+    extended: false
+});
+
 app.get('/', routes.index);
 app.get('/create', routes.createAccount);
 app.post('/create', urlendcodedParser, routes.createAccount);
