@@ -3,3 +3,17 @@ th, td {
     padding: 8px;
     border-style: solid;
 }
+
+html{
+    background-color:midnightblue;
+    color:skyblue;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color:white;
+}
