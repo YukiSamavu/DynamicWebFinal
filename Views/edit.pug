@@ -1,7 +1,7 @@
 extends layout 
 
 block content 
-    form(id = 'form' method = 'post' action = '/edit/' + account.email)
+    form(id = 'form' method = 'post' action = '/edit')
         p Username 
             input(type = 'text' name = 'username' value = account.username)
         p Password 
