@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes/routes');
+const expressSession = require('express-session');
 
 const app = express();
 
@@ -11,6 +12,11 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
+app.use(expressSession({
+    secret: 'W3b15n1c5',
+    saveUninitialized: true,
+    resave: true
+}));
 
 let urlendcodedParser  = express.urlencoded({
     extended: false
