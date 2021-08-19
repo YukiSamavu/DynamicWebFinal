@@ -77,7 +77,7 @@ exports.editAccount = (req, res) => {
         account.middle = req.body.middle;
         account.save((err, account) => {
             if(err) return console.error(err);
-            console.log(req.body.email);
+            console.log(req.body.username);
         });
         res.redirect('/');
     });
