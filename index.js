@@ -1,5 +1,4 @@
 const pug = require('pug');
-const bcrypt = require('bcryptjs');
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -23,7 +22,6 @@ let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 app.get('/', routes.index);
 app.get('/home', (req,res) => {
     res.cookie('time', theTime, {maxAge:9999999999999999});
-    res.send(`You logged in at ${theTime}`);
     res.render('Home', {
         title: 'Welcome'
         });

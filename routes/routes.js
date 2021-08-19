@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 mongoose.Promise = global.Promise;
 
@@ -14,6 +15,7 @@ let mdb = mongoose.connection;
 mdb.on('error', console.error.bind(console, 'connection error'));
 mdb.once('open', callback => {});
 
+let salt = bcrypt.genSaltSync(10);
 
 let accountSchema = mongoose.Schema({
     username: String,
@@ -53,6 +55,7 @@ exports.createAccount = (req, res) => {
         color: req.body.color,
         middle: req.body.middle
     });
+    profiles.password = bcrypt.hashSync(profiles.password, salt);
     profiles.save((err, profiles) => {
         if(err) return console.error(err);
         console.log(req.body.username);
@@ -75,6 +78,7 @@ exports.editAccount = (req, res) => {
         account.state = req.body.state,
         account.color = req.body.color,
         account.middle = req.body.middle;
+        profiles.password = bcrypt.hashSync(profiles.password, salt);
         account.save((err, account) => {
             if(err) return console.error(err);
             console.log(req.body.email);
