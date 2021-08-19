@@ -23,7 +23,8 @@ app.get('/', routes.index);
 app.get('/home', (req,res) => {
     res.cookie('time', theTime, {maxAge:9999999999999999});
     res.render('Home', {
-        title: 'Welcome'
+        title: 'Welcome',
+        time: theTime
         });
     });
 app.get('/create', routes.create);
