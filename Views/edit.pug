@@ -3,13 +3,22 @@ extends layout
 block content 
     form(id = 'form' method = 'post' action = '/edit')
         p Username 
-            input(type = 'text' name = 'username' value = account.username)
+            input(type = 'text' name = 'username' value = account)
         p Password 
-            input(type = 'text' name = 'password'  value = account.password)
+            input(type = 'text' name = 'password'  value = account)
         p Email 
-            input(type = 'text' name = 'email'  value = account.email)
+            input(type = 'text' name = 'email'  value = account)
         p Age 
-            input(type = 'text' name = 'age'  value = account.age)
+            input(type = 'text' name = 'age'  value = account)
+        p Question #1:
+        p What state do you live in currently?   
+            input(type = 'text' name = 'state' value = account)
+        p Question #2: 
+        p What is your favorite color? 
+            input(type = 'text' name = 'color' value = account)
+        p Question #3:
+        p What is your middle name? 
+            input(type = 'text' name = 'middle' value = account)
 
         p 
             input(type = 'submit' value = 'Update profile')
