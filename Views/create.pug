@@ -12,13 +12,24 @@ block content
             input(type = 'text' name = 'age')
         p Question #1:
         p What state do you live in currently?   
-            input(type = 'text' name = 'state')
+            select(name='state')
+                option(value='LA') LA 
+                option(value='UT') UT 
+                option(value='TX') TX
+                option(value='PA') PA
         p Question #2: 
         p What is your favorite color? 
-            input(type = 'text' name = 'color')
+            select(name='color')
+                option(value='green') green 
+                option(value='blue') blue
+                option(value='pink') pink
+                option(value='brown') brown
         p Question #3:
         p What is your middle name? 
-            input(type = 'text' name = 'middle')
-
+            select(name='middle')
+                option(value='Jess') Jess 
+                option(value='Lee') Lee
+                option(value='Levi') Levi
+                option(value='Melly') Melly
         p 
             input(type = 'submit' value = 'add profile')
