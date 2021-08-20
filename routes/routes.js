@@ -81,9 +81,9 @@ exports.createAccount = (req, res) => {
         password: req.body.password,
         email: req.body.email,
         age: req.body.age,
-        state: req.body.state,
+        continent: req.body.continent,
         color: req.body.color,
-        middle: req.body.middle
+        cardgame: req.body.cardgame
     });
     profiles.password = bcrypt.hashSync(profiles.password, salt);
     profiles.save((err, profiles) => {
@@ -105,9 +105,9 @@ exports.editAccount = (req, res) => {
         account.password = req.body.password,
         account.email = req.body.email,
         account.age = req.body.age,
-        account.state = req.body.state,
+        account.continent = req.body.continent,
         account.color = req.body.color,
-        account.middle = req.body.middle;
+        account.cardgame = req.body.cardgame;
         profiles.password = bcrypt.hashSync(profiles.password, salt);
         account.save((err, account) => {
             if(err) return console.error(err);
