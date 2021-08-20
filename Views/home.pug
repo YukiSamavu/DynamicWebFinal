@@ -3,7 +3,15 @@ extends layout
 block content 
         
         p I hope you enjoy your stay here! 
+        table(class = 'myOtherTable')
+        p Click the link below to edit your profile.
+        p 
+        p
+
+        a(href = '/edit') Edit Profile
+        p
         img(src="welcome.png", alt="")
         img(src="awesome.jpg", alt="", width=200, height=200)
-        p 
-            input(type = 'submit' value = 'Logout')
+        form(method='POST' action='/logout')
+            p 
+                input(type = 'submit' value = 'Logout')

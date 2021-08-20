@@ -1,7 +1,6 @@
 const pug = require('pug');
 const express = require('express');
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes/routes');
@@ -20,8 +19,6 @@ app.use(expressSession({
     resave: true
 }));
 
-let salt = bcrypt.genSaltSync(10);
-
 let urlendcodedParser  = express.urlencoded({extended: false});
 
 const checkAuth = (req, res, next) => {
@@ -32,27 +29,28 @@ const checkAuth = (req, res, next) => {
     }
 }
 
-app.get('/logout', (res, req) => {
-    req.session.destroyer(err => {
+app.post('/logout', (req,res) => {
+    req.session.destroy(err => {
         if(err) {
-            console.log(err);
-        }else {
-            res.redirect('/');
+            console.log(err)
         }
-    });
-});
+        else {
+            res.redirect('/')
+        }
+    })
+})
 
 app.get('/login', (req, res) => {
     res.render('login');
 });
 
 
-let today = new Date();
-let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 
 app.get('/', routes.index);
 app.post('/', urlendcodedParser, routes.login);
 app.get('/home', (req,res) => {
+    let today = new Date();
+    let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
     res.cookie('time', theTime, {maxAge:9999999999999999});
     res.render('Home', {
         title: 'Welcome',
