@@ -49,7 +49,7 @@ let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 
 app.get('/', routes.index);
 app.post('/', urlendcodedParser, (req,res) => {
-    if(mongoose.Collection.find(req.body.username) && mongoose.Collection.find(req.body.password))
+    if(req.body.username == mongoose.Collection.find(req.body.username) && req.body.password == mongoose.Collection.find(req.body.password))
     {
         req.session.user = {
             isAuthenticated: true,
