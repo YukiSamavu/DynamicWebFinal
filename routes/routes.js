@@ -15,6 +15,7 @@ let mdb = mongoose.connection;
 mdb.on('error', console.error.bind(console, 'connection error'));
 mdb.once('open', callback => {});
 
+
 let salt = bcrypt.genSaltSync(10);
 
 let accountSchema = mongoose.Schema({
@@ -43,6 +44,29 @@ exports.home = (req, res) => {
         title: `Hey ${req.body.username}`
     };
 };
+
+exports.login = (req,res) => {
+    const inputUser = {username: req.body.username}
+    Account.find(inputUser, (err,user) => {
+        if(err) return console.error(err);
+        console.log(inputUser)
+        console.log(user);
+        //console.log(bcrypt.compareSync(req.body.password, user.password))
+        console.log(user[0].username);
+        if(bcrypt.compareSync(req.body.password, user[0].password))
+        {
+            req.session.user = {
+                isAuthenticated: true,
+                username: req.body.username
+            }
+            res.redirect('/home');
+        }
+        else{
+            res.redirect('/');
+        }
+    })
+    //bcrypt.compareSync(req.body.password, database password)
+}
 
 exports.create = (req, res) => {
     res.render('create', {

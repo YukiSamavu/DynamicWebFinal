@@ -1,6 +1,7 @@
 const pug = require('pug');
 const express = require('express');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes/routes');
@@ -18,6 +19,8 @@ app.use(expressSession({
     saveUninitialized: true,
     resave: true
 }));
+
+let salt = bcrypt.genSaltSync(10);
 
 let urlendcodedParser  = express.urlencoded({extended: false});
 
@@ -48,19 +51,7 @@ let today = new Date();
 let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 
 app.get('/', routes.index);
-app.post('/', urlendcodedParser, (req,res) => {
-    if(req.body.username == mongoose.Collection.find(req.body.username) && req.body.password == mongoose.Collection.find(req.body.password))
-    {
-        req.session.user = {
-            isAuthenticated: true,
-            username: req.body.username
-        }
-        req.redirect('/home');
-    }
-    else{
-        res.redirect('/');
-    }
-})
+app.post('/', urlendcodedParser, routes.login);
 app.get('/home', (req,res) => {
     res.cookie('time', theTime, {maxAge:9999999999999999});
     res.render('Home', {
