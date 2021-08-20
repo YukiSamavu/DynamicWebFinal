@@ -58,15 +58,5 @@ app.get('/create', routes.create);
 app.post('/create', urlendcodedParser, routes.createAccount);
 app.get('/edit', routes.edit)
 app.post('/edit', urlendcodedParser, routes.editAccount);
-app.get('/logout', (req,res) => {
-    req.session.destroy(err => {
-        if(err) {
-            console.log(err)
-        }
-        else {
-            res.redirect('/')
-        }
-    })
-})
 app.listen(3000);
 
