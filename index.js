@@ -18,9 +18,30 @@ app.use(expressSession({
     resave: true
 }));
 
-let urlendcodedParser  = express.urlencoded({
-    extended: false
+let urlendcodedParser  = express.urlencoded({extended: false});
+
+const checkAuth = (req, res, next) => {
+    if(req.session.user && req.session.user.isAuthenticated){
+        next();
+    }else{
+        res.redirect('/login');
+    }
+}
+
+app.get('/logout', (res, req) => {
+    req.session.destroyer(err => {
+        if(err) {
+            console.log(err);
+        }else {
+            res.redirect('/login');
+        }
+    });
 });
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
 
 let today = new Date();
 let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;

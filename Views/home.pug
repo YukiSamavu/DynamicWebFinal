@@ -1,6 +1,13 @@
 extends layout 
 
 block content 
-    p Welcome! I hope you enjoy your stay here! 
-    img(src="welcome.png", alt="")
-    img(src="awesome.jpg", alt="", width=200, height=200)
+        form(id = 'form' method = 'post' action = '/')
+        p Username 
+            input(type = 'text' name = 'username')
+        p Password 
+            input(type = 'text' name = 'password')
+        p 
+                input(type = 'submit' value = 'Login')
+        p I hope you enjoy your stay here! 
+        img(src="welcome.png", alt="")
+        img(src="awesome.jpg", alt="", width=200, height=200)
