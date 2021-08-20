@@ -11,12 +11,15 @@ block content
         p Type in your Age 
             input(type = 'text' name = 'age')
         p Question #1:
-        p What state do you live in currently?   
-            select(name='state')
-                option(value='LA') LA 
-                option(value='UT') UT 
-                option(value='TX') TX
-                option(value='PA') PA
+        p What continent do you live in currently?   
+            select(name='continent')
+                option(value='NA') North America
+                option(value='SA') South America
+                option(value='EU') Eurpoe
+                option(value='AS') Asia
+                option(value='AF') Africa
+                option(value='AU') Australia
+                option(value='AN') Antartica
         p Question #2: 
         p What is your favorite color? 
             select(name='color')
@@ -25,11 +28,11 @@ block content
                 option(value='pink') pink
                 option(value='brown') brown
         p Question #3:
-        p What is your middle name? 
-            select(name='middle')
-                option(value='Jess') Jess 
-                option(value='Lee') Lee
-                option(value='Levi') Levi
-                option(value='Melly') Melly
+        p Which is your favorite card game? 
+            select(name='cardgame')
+                option(value='Go Fish') Go Fish 
+                option(value='Old Maid') Old Maid
+                option(value='War') War
+                option(value='Memory') Memory
         p 
             input(type = 'submit' value = 'add profile')
