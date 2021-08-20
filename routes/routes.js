@@ -32,10 +32,16 @@ let Account = mongoose.model('Account_Connection', accountSchema);
 exports.index = (req, res) => {
     Account.find((err, account) => {
     res.render('index', {
-        title: 'Welcome, please create an account',
+        title: `Hello!`,
         accounts: account
         });
     });
+};
+
+exports.home = (req, res) => {
+    res.render('Home'), {
+        title: `Hey ${req.body.username}`
+    };
 };
 
 exports.create = (req, res) => {

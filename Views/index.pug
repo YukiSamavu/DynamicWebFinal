@@ -1,8 +1,16 @@
 extends layout
 
 block content 
+    form(id = 'form' method = 'post' action = '/')
+        p Username 
+            input(type = 'text' name = 'username')
+        p Password 
+            input(type = 'text' name = 'password')
+        p 
+            input(type = 'submit' value = 'Login')
+        
     table(class = 'myTable')
-    p Click the link below to continue.
+    p Click the link below to create a profile.
     p 
     p
 
