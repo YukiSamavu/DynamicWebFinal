@@ -44,8 +44,6 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
-
-
 app.get('/', routes.index);
 app.post('/', urlendcodedParser, routes.login);
 app.get('/home', (req,res) => {
