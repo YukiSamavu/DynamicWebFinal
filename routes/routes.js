@@ -95,7 +95,7 @@ exports.createAccount = (req, res) => {
 
 exports.edit = (req, res) => {
     res.render('edit', {
-        title: 'edit account'
+        title: 'Edit account'
     });
 };
 
