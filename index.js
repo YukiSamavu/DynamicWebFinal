@@ -34,7 +34,7 @@ app.get('/logout', (res, req) => {
         if(err) {
             console.log(err);
         }else {
-            res.redirect('/login');
+            res.redirect('/');
         }
     });
 });
