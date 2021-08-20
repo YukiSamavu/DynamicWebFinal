@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes/routes');
 const expressSession = require('express-session');
+const { decodeBase64 } = require('bcryptjs');
 
 const app = express();
 
@@ -47,6 +48,19 @@ let today = new Date();
 let theTime = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 
 app.get('/', routes.index);
+app.post('/', urlendcodedParser, (req,res) => {
+    if(mongoose.Collection.find(req.body.username) && mongoose.Collection.find(req.body.password))
+    {
+        req.session.user = {
+            isAuthenticated: true,
+            username: req.body.username
+        }
+        req.redirect('/home');
+    }
+    else{
+        res.redirect('/');
+    }
+})
 app.get('/home', (req,res) => {
     res.cookie('time', theTime, {maxAge:9999999999999999});
     res.render('Home', {
