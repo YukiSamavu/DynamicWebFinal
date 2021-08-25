@@ -9,6 +9,12 @@ const { decodeBase64 } = require('bcryptjs');
 
 const app = express();
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -59,6 +65,6 @@ app.get('/create', routes.create);
 app.post('/create', urlendcodedParser, routes.createAccount);
 app.get('/edit', routes.edit)
 app.post('/edit', urlendcodedParser, routes.editAccount);
-app.get('/api')
+app.get('/api', routes.api)
 app.listen(3000);
 
