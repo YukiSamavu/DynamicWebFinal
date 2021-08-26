@@ -23,9 +23,9 @@ let accountSchema = mongoose.Schema({
     password: String, 
     email: String, 
     age: Number,
-    state: String,
+    continent: String,
     color: String, 
-    middle: String
+    cardgame: String
 }); 
 
 let Account = mongoose.model('Account_Connection', accountSchema);
@@ -117,3 +117,49 @@ exports.editAccount = (req, res) => {
     });
 };
 
+
+
+
+exports.api = (req, res) => {
+    Account.find( {}, (err, questionData) => {
+        let qArray = {
+            continent: {
+                'NA' : 0,
+                'SA' : 0,
+                'EU' : 0,
+                'AS' : 0,
+                'AF' : 0,
+                'AU' : 0,
+                'AN' : 0
+            },
+            color: {
+                'green' : 0,
+                'blue' : 0,
+                'pink' : 0,
+                'brown' : 0
+            },
+            cardgame: {
+                'Go Fish' : 0,
+                'Old Maid' : 0,
+                'War' : 0,
+                'Memory' : 0
+            }
+        }
+        questionData.forEach(qData => {
+            qArray.continent[qData.continent]++
+            qArray.color[qData.color]++
+            qArray.cardgame[qData.cardgame]++
+        });
+        res.json(qArray);
+    })
+
+    
+    // if(req.query.id == undefined){
+    //     res.json(theJSON);
+    // } else {
+    //     res.json(theJSON[req.query.id]);
+    // }
+}
+
+//Find all the question data
+//then count all the data
