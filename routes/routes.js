@@ -152,14 +152,4 @@ exports.api = (req, res) => {
         });
         res.json(qArray);
     })
-
-    
-    // if(req.query.id == undefined){
-    //     res.json(theJSON);
-    // } else {
-    //     res.json(theJSON[req.query.id]);
-    // }
 }
-
-//Find all the question data
-//then count all the data
