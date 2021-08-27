@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const {createAvatar} = require('@dicebear/avatars');
+const style = require('@dicebear/avatars-avataaars-sprites');
 
 mongoose.Promise = global.Promise;
 
@@ -15,8 +17,8 @@ let mdb = mongoose.connection;
 mdb.on('error', console.error.bind(console, 'connection error'));
 mdb.once('open', callback => {});
 
-
 let salt = bcrypt.genSaltSync(10);
+let currentUser = ''
 
 let accountSchema = mongoose.Schema({
     username: String,
@@ -25,7 +27,10 @@ let accountSchema = mongoose.Schema({
     age: Number,
     continent: String,
     color: String, 
-    cardgame: String
+    cardgame: String,
+    hairColor: String,
+    clothes: String,
+    skin: String
 }); 
 
 let Account = mongoose.model('Account_Connection', accountSchema);
@@ -55,6 +60,7 @@ exports.login = (req,res) => {
         console.log(user[0].username);
         if(bcrypt.compareSync(req.body.password, user[0].password))
         {
+            currentUser = inputUser;
             req.session.user = {
                 isAuthenticated: true,
                 username: req.body.username
@@ -66,6 +72,28 @@ exports.login = (req,res) => {
         }
     })
     //bcrypt.compareSync(req.body.password, database password)
+}
+
+exports.avatar = (req,res) => {
+    res.render('avatar', {
+        title: 'Edit Avatar'
+    })
+}
+
+exports.editAvatar = (req,res) => {
+    let customAvartar = createAvatar(style, {seed: 'custom-seed', 
+                                            hairColor: req.body.hairColor,
+                                            clothes: req.body.clothes,
+                                            skin: req.body.skin})
+    
+    Account.find(currentUser, (err, userData) => {
+        //console.log(userData);  
+        //console.log(currentUser)
+        userData.hairColor = req.body.hairColor
+        userData.clothes = req.body.clothes
+        userData.skin = req.body.skin
+    })
+    res.redirect('/home')
 }
 
 exports.create = (req, res) => {

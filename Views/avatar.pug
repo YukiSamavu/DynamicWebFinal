@@ -1,0 +1,39 @@
+extends layout 
+
+block content 
+    form(id = 'form' method = 'post' action = '/avatar')
+        p Hair Color: 
+            select(name='hairColor')
+                option(value='auburn') Auburn
+                option(value='black') Black
+                option(value='blone') Blone
+                option(value='brown') Brown
+                option(value='pastel') Pastel
+                option(value='platinum') Platinum
+                option(value='red') Red
+                option(value='gray') Gray
+        p Clothing: 
+            select(name='clothing')
+                option(value='blazer') Blazer 
+                option(value='blazerAndShirt') Blazer and Shirt
+                option(value='blazerAndSweater') Blazer and Sweater
+                option(value='sweater') Sweater
+                option(value='collarAndSwater') Collar and Sweater
+                option(value='shirt') Shirt
+                option(value='graphicShirt') Graphic Shirt
+                option(value='shirtCrewNeck') Shirt Crew Neck
+                option(value='shirtScoopNeck') Shirt Scoop Neck
+                option(value='shirtVNeck') Shirt VNeck
+                option(value='hoodie') Hoodie
+                option(value='overall') Overall
+        p Skin: 
+            select(name='skin')
+                option(value='tanned') Tanned
+                option(value='yellow') Yellow
+                option(value='pale') Pale
+                option(value='light') Light
+                option(value='brown') Brown
+                option(value='black') Black
+
+        p 
+            input(type = 'submit' value = 'Update avatar')

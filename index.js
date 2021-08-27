@@ -5,7 +5,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes/routes');
 const expressSession = require('express-session');
-const { decodeBase64 } = require('bcryptjs');
 
 const app = express();
 
@@ -63,8 +62,10 @@ app.get('/home', (req,res) => {
     });
 app.get('/create', routes.create);
 app.post('/create', urlendcodedParser, routes.createAccount);
-app.get('/edit', routes.edit)
+app.get('/edit', routes.edit);
 app.post('/edit', urlendcodedParser, routes.editAccount);
-app.get('/api', routes.api)
+app.get('/api', routes.api);
+app.get('/avatar', routes.avatar);
+app.post('/avatar', urlendcodedParser, routes.editAvatar)
 app.listen(3000);
 
