@@ -68,5 +68,6 @@ app.post('/edit', urlendcodedParser, routes.editAccount);
 app.get('/api', routes.api);
 app.get('/avatar', routes.avatar);
 app.post('/avatar', urlendcodedParser, routes.editAvatar)
+app.get('/graph', routes.bargraph)
 app.listen(3000);
 

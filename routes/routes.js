@@ -128,7 +128,7 @@ exports.edit = (req, res) => {
 };
 
 exports.editAccount = (req, res) => {
-    Profile.findByEmail(req.params.email, (err, account) => {
+    Account.findByEmail(req.params.email, (err, account) => {
         account.username = req.body.username,
         account.password = req.body.password,
         account.email = req.body.email,
@@ -181,3 +181,9 @@ exports.api = (req, res) => {
         res.json(qArray);
     })
 }
+
+exports.bargraph = (req, res) => {
+    res.render('Graph', {
+        title: 'Data Graph'
+    });
+};
