@@ -3,7 +3,6 @@ const ctx = canvas.getContext('2d');
 
 canvas.width = 1500;
 canvas.height = 800;
-//ctx.fillRect(X-axis, Y-axis, width, height)  
 
 fetch('http://localhost:3000/api').then(res => res.json()).then(graphData => {
     console.log(graphData);
@@ -27,51 +26,53 @@ fetch('http://localhost:3000/api').then(res => res.json()).then(graphData => {
 
 ctx.fillStyle = '#FFFFFF';
 ctx.font = '20px Arial';
+
 //North America
 ctx.fillStyle = '#405';
-ctx.fillRect(20, 300, 60, 420 *  (NA));
+ctx.fillRect(20, 300, 60, 210 *  (NA));
 //South America
+//ctx.fillRect(X-axis, Y-axis, width, height)  
 ctx.fillStyle = '#8F1834';
-ctx.fillRect(100, 300, 60, 420 * (SA));
+ctx.fillRect(100, 150, 60, 210 * (SA));
 //Europe
 ctx.fillStyle = '#006D9C';
-ctx.fillRect(190, 300, 60, 420 * (EU));
+ctx.fillRect(190, 500, 60, 210 * (EU));
 //Asia
 ctx.fillStyle = '#4DEB92';
-ctx.fillRect(280, 300, 60, 420 * (AS)); 
+ctx.fillRect(280, 300, 60, 210 * (AS)); 
 //Africa
 ctx.fillStyle = '#BC30FF';
-ctx.fillRect(360, 300, 60, 420 * (AF));
+ctx.fillRect(360, 300, 60, 210 * (AF));
 //Australia
 ctx.fillStyle = '#E5FF21';
-ctx.fillRect(450, 300, 60, 420 * (AU));
+ctx.fillRect(450, 300, 60, 210 * (AU));
 //Anarctica
 ctx.fillStyle = '#ED39D8';
-ctx.fillRect(540, 300, 60, 420 * (AN));
+ctx.fillRect(540, 300, 60, 210 * (AN));
 //Green
 ctx.fillStyle = '#009E37';
-ctx.fillRect(635, 300, 60, 420 * (greenColor));
+ctx.fillRect(635, 210, 60, 170 * (greenColor));
 //blue
 ctx.fillStyle = '#0000FF';
-ctx.fillRect(720, 300, 60, 420 * (blueColor));
+ctx.fillRect(720, 300, 60, 210 * (blueColor));
 //pink
 ctx.fillStyle = '#e75480';
-ctx.fillRect(800, 300, 60, 420 * (pinkColor));
+ctx.fillRect(800, 300, 60, 210 * (pinkColor));
 //brown
 ctx.fillStyle = '#964B00';
-ctx.fillRect(880, 300, 60, 420 * (brownColor));
+ctx.fillRect(880, 300, 60, 210 * (brownColor));
 //Memory
-ctx.fillStyle = '#BBECF0';
-ctx.fillRect(970, 300, 60, 420 * (memory));
+ctx.fillStyle = '#FFFF00';
+ctx.fillRect(970, 500, 60, 210 * (memory));
 //War
 ctx.fillStyle = '#F0A500';
-ctx.fillRect(1050, 300, 60, 420 * (war));
+ctx.fillRect(1050, 500, 60, 210 * (war));
 //Old Maid 
 ctx.fillStyle = '#F048B4';
-ctx.fillRect(1135, 300, 60, 420 * (oldMaid));
+ctx.fillRect(1135, 500, 60, 210 * (oldMaid));
 //Go Fish
 ctx.fillStyle = '#c0c0c0';
-ctx.fillRect(1210, 300, 60, 420 * (GoFish));
+ctx.fillRect(1210, 300, 60, 210 * (GoFish));
 
 ctx.fillText('North', 23, 750);
 ctx.fillText('America', 10, 770);
