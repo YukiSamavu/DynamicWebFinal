@@ -39,19 +39,19 @@ ctx.fillStyle = '#006D9C';
 ctx.fillRect(190, 500, 60, 210 * (EU));
 //Asia
 ctx.fillStyle = '#4DEB92';
-ctx.fillRect(280, 300, 60, 210 * (AS)); 
+ctx.fillRect(280, 500, 60, 210 * (AS)); 
 //Africa
 ctx.fillStyle = '#BC30FF';
-ctx.fillRect(360, 300, 60, 210 * (AF));
+ctx.fillRect(360, 500, 60, 210 * (AF));
 //Australia
 ctx.fillStyle = '#E5FF21';
-ctx.fillRect(450, 300, 60, 210 * (AU));
+ctx.fillRect(450, 500, 60, 210 * (AU));
 //Anarctica
 ctx.fillStyle = '#ED39D8';
-ctx.fillRect(540, 300, 60, 210 * (AN));
+ctx.fillRect(540, 500, 60, 210 * (AN));
 //Green
 ctx.fillStyle = '#009E37';
-ctx.fillRect(635, 210, 60, 170 * (greenColor));
+ctx.fillRect(635, 300, 60, 210 * (greenColor));
 //blue
 ctx.fillStyle = '#0000FF';
 ctx.fillRect(720, 300, 60, 210 * (blueColor));
@@ -72,7 +72,7 @@ ctx.fillStyle = '#F048B4';
 ctx.fillRect(1135, 500, 60, 210 * (oldMaid));
 //Go Fish
 ctx.fillStyle = '#c0c0c0';
-ctx.fillRect(1210, 300, 60, 210 * (GoFish));
+ctx.fillRect(1210, 500, 60, 210 * (GoFish));
 
 ctx.fillText('North', 23, 750);
 ctx.fillText('America', 10, 770);
