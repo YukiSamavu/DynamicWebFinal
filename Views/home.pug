@@ -4,14 +4,11 @@ block content
         
         p I hope you enjoy your stay here! 
         table(class = 'myOtherTable')
-        p Click the link below to edit your profile.
+        p Click the link below to view bargraph
         p 
         p
+            a(href='/graph') Bargraph
 
-        a(href = '/edit') Edit Profile
-        p
-        a(href = '/avatar') Edit Avatar
-        p
         img(src="welcome.png", alt="")
         img(src="awesome.jpg", alt="", width=200, height=200)
         form(method='POST' action='/logout')

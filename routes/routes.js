@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const {createAvatar} = require('@dicebear/avatars');
-const style = require('@dicebear/avatars-avataaars-sprites');
 
 mongoose.Promise = global.Promise;
 
@@ -19,6 +17,7 @@ mdb.once('open', callback => {});
 
 let salt = bcrypt.genSaltSync(10);
 let currentUser = ''
+let avatarLink = ''
 
 let accountSchema = mongoose.Schema({
     username: String,
@@ -28,9 +27,7 @@ let accountSchema = mongoose.Schema({
     continent: String,
     color: String, 
     cardgame: String,
-    hairColor: String,
-    clothes: String,
-    skin: String
+    avatarLink: String
 }); 
 
 let Account = mongoose.model('Account_Connection', accountSchema);
@@ -39,7 +36,7 @@ exports.index = (req, res) => {
     Account.find((err, account) => {
     res.render('index', {
         title: `Hello!`,
-        accounts: account
+        //image.src = avatarLink
         });
     });
 };
@@ -65,6 +62,8 @@ exports.login = (req,res) => {
                 isAuthenticated: true,
                 username: req.body.username
             }
+            avatarLink = user[0].avatarLink
+            console.log(avatarLink)
             res.redirect('/home');
         }
         else{
@@ -72,28 +71,6 @@ exports.login = (req,res) => {
         }
     })
     //bcrypt.compareSync(req.body.password, database password)
-}
-
-exports.avatar = (req,res) => {
-    res.render('avatar', {
-        title: 'Edit Avatar'
-    })
-}
-
-exports.editAvatar = (req,res) => {
-    let customAvartar = createAvatar(style, {seed: 'custom-seed', 
-                                            hairColor: req.body.hairColor,
-                                            clothes: req.body.clothes,
-                                            skin: req.body.skin})
-    
-    Account.find(currentUser, (err, userData) => {
-        //console.log(userData);  
-        //console.log(currentUser)
-        userData.hairColor = req.body.hairColor
-        userData.clothes = req.body.clothes
-        userData.skin = req.body.skin
-    })
-    res.redirect('/home')
 }
 
 exports.create = (req, res) => {
@@ -104,6 +81,7 @@ exports.create = (req, res) => {
 
 exports.createAccount = (req, res) => {
     //if(err) return console.error(err);
+    let avatar = `https://avatars.dicebear.com/api/avataaars/custom.svg?hairColor[]=${req.body.hairColor}&clothes[]=${req.body.clothing}&skin[]=${req.body.skin}`
     let profiles = new Account({
         username: req.body.username,
         password: req.body.password,
@@ -111,7 +89,8 @@ exports.createAccount = (req, res) => {
         age: req.body.age,
         continent: req.body.continent,
         color: req.body.color,
-        cardgame: req.body.cardgame
+        cardgame: req.body.cardgame,
+        avatarLink: avatar
     });
     profiles.password = bcrypt.hashSync(profiles.password, salt);
     profiles.save((err, profiles) => {
@@ -128,7 +107,7 @@ exports.edit = (req, res) => {
 };
 
 exports.editAccount = (req, res) => {
-    Account.findByEmail(req.params.email, (err, account) => {
+    Profile.findByEmail(req.params.email, (err, account) => {
         account.username = req.body.username,
         account.password = req.body.password,
         account.email = req.body.email,
@@ -144,9 +123,6 @@ exports.editAccount = (req, res) => {
         res.redirect('/');
     });
 };
-
-
-
 
 exports.api = (req, res) => {
     Account.find( {}, (err, questionData) => {
@@ -181,6 +157,7 @@ exports.api = (req, res) => {
         res.json(qArray);
     })
 }
+
 
 exports.bargraph = (req, res) => {
     res.render('Graph', {
