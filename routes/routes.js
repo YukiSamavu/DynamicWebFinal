@@ -78,6 +78,7 @@ exports.create = (req, res) => {
         title: 'Create New Profile'
     });
 };
+var myList = [];
 
 exports.createAccount = (req, res) => {
     //if(err) return console.error(err);
@@ -92,8 +93,9 @@ exports.createAccount = (req, res) => {
         cardgame: req.body.cardgame,
         avatarLink: avatar
     });
+    myList.push(profiles);
     profiles.password = bcrypt.hashSync(profiles.password, salt);
-    profiles.save((err, profiles) => {
+    myList[0].save((err, profiles) => {
         if(err) return console.error(err);
         console.log(req.body.username);
     });
@@ -105,9 +107,9 @@ exports.edit = (req, res) => {
         title: 'Edit account'
     });
 };
-
+var account = new Account()
 exports.editAccount = (req, res) => {
-    Profile.findByEmail(req.params.email, (err, account) => {
+    Account.find(req.params.email, (err, account) => {
         account.username = req.body.username,
         account.password = req.body.password,
         account.email = req.body.email,
@@ -115,12 +117,12 @@ exports.editAccount = (req, res) => {
         account.continent = req.body.continent,
         account.color = req.body.color,
         account.cardgame = req.body.cardgame;
-        profiles.password = bcrypt.hashSync(profiles.password, salt);
-        account.save((err, account) => {
+        account.password = bcrypt.hashSync(account.password, salt);
+        myList[0].save((err, profiles) => {
             if(err) return console.error(err);
             console.log(req.body.username);
         });
-        res.redirect('/');
+        res.redirect('/home');
     });
 };
 
